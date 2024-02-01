@@ -1,0 +1,34 @@
+GET http://localhost:8080/category
+
+###
+POST http://localhost:8080/category
+Content-Type: application/json
+
+{
+    "name": "Category 2"
+}
+
+###
+GET http://localhost:8080/product
+
+###
+POST http://localhost:8080/product
+Content-Type: application/json
+
+{
+    "name": "Product 1",
+    "description": "Description 1",
+    "price": 10.0,
+    "category_id": "5ce585a3-fef3-427f-843b-0eadd8558230",
+    "image_url": "http://localhost:9000/products/1.png"
+}
+
+
+###
+GET http://localhost:8080/product/7f8c9d8e-9f0a-1b2c-3d4e-5f6g7h8i9ja0
+
+###
+GET http://localhost:8080/product/category/5ce585a3-fef3-427f-843b-0eadd8558230
+
+###
+GET http://localhost:8080/product/category/6b6c7d6e-6f70-7172-7374-75767778797a

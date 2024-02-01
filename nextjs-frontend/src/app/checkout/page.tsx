@@ -12,43 +12,16 @@ import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { CheckoutForm } from "./CheckoutForm";
 import { redirect } from "next/navigation";
 import { Total } from "../../components/Total";
-
-const products = [
-    {
-      id: "1",
-      name: "Camisa",
-      description: "Camisa branca",
-      price: 100,
-      image_url: "https://source.unsplash.com/random?product",
-      category_id: "1",
-    },
-    {
-      id: "2",
-      name: "Calça",
-      description: "Calça jeans",
-      price: 100,
-      image_url: "https://source.unsplash.com/random?product",
-      category_id: "1",
-    },
-  ];
-  
-  const cart = {
-    items: [
-      {
-        product_id: "1",
-        quantity: 2,
-        total: 200,
-      },
-      {
-        product_id: "2",
-        quantity: 1,
-        total: 100,
-      },
-    ],
-    total: 1000,
-  };
+import { CartServiceFactory } from "../../services/cart.service";
+import { ProductService } from "../../services/product.service";
 
 async function CheckoutPage() {
+  const cart = CartServiceFactory.create().getCart();
+  const productService = new ProductService();
+  const products = await productService.getProductsByIds(
+    cart.items.map((item) => item.product_id)
+  );
+
   if (cart.items.length === 0) {
     return redirect("/my-cart");
   }

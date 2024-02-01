@@ -4,22 +4,16 @@ import { ProductQuantityForm } from "./ProductQuantityForm";
 import DescriptionIcon from "@mui/icons-material/Description";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import Image from "next/legacy/image";
-import { Product } from "../../../models";
-
-const product: Product = {
-  id: "1",
-  name: "Camisa",
-  description: "Camisa branca",
-  price: 100,
-  image_url: "https://source.unsplash.com/random?product",
-  category_id: "1",
-};
+import { ProductService } from "../../../services/product.service";
 
 async function ProductDetailPage({
-  params,
+  params
 }: {
   params: { productId: string };
 }) {
+
+  const product = await new ProductService().getProduct(params.productId);
+
   return (
     <Grid2 container spacing={2}>
       <Grid2

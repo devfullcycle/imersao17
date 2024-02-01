@@ -14,6 +14,7 @@ import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import { Total } from "../../../components/Total";
+import { addToCartAction } from "../../../server-actions/cart.action";
 
 const schema = yup
   .object({
@@ -50,6 +51,7 @@ export function ProductQuantityForm(props: { product: Product }) {
     <Box
       component="form"
       sx={{ p: 1 }}
+      action={addToCartAction}
     >
       <Box
         sx={{
